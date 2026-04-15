@@ -1,13 +1,8 @@
 package day5;
 
-import java.util.Arrays;
-import java.util.Scanner;
-
-import day3.MergeSortDemo;
-
 /*
   tourist : 100.75 dollar
-  exchange : 95*100.75 = 99.50			9500		450		200 x 2   50  
+  exchange : 99.5*100 = 9950			 
   
   minimum notes
   notes denominations : 7 
@@ -54,7 +49,7 @@ public class MoneyExchange {
 
 	private static void calculateExchange(double amountInINR, int[] currency) {
 												//amount  9550,50
-		int notes[]=new int[currency.length];	//notes = [19,	0,	0,	0,1, 1, 0]
+		int notes[]=new int[currency.length];	//notes = [19,	2,	0,	1,0, 0, 0]
 												//curr =  [500,200,100,50,20,10,5]
 		{
 			for(int i=0;i<currency.length;i++)
@@ -63,7 +58,6 @@ public class MoneyExchange {
 				{
 				notes[i]=(int)amountInINR/currency[i];
 				amountInINR=(int)amountInINR%currency[i];
-				//System.out.println(i + " " + amountInINR);
 				}
 			}
 		}
@@ -77,8 +71,7 @@ public class MoneyExchange {
 			totalNotes+=notes[i];
 		}
 		
-		System.out.println("Total Notes "+ totalNotes);
-		
+		System.out.println("Total Notes "+ totalNotes);	
 	}
 	
 
