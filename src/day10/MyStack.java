@@ -5,6 +5,7 @@ public class MyStack {
 	private char[] stack;
 	private int top=-1;
 	
+	
 	 public MyStack(String str)
 	 {
 		 stack=new char[str.length()];
