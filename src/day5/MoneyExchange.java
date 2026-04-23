@@ -48,13 +48,14 @@ public class MoneyExchange {
 	}
 
 	private static void calculateExchange(double amountInINR, int[] currency) {
-												//amount  9550,50
-		int notes[]=new int[currency.length];	//notes = [19,	2,	0,	1,0, 0, 0]
+												//amount  9550.0
+		int notes[]=new int[currency.length];	//                     i     
+												//notes = [19, 0,  0,  1, 0, 0, 0]
 												//curr =  [500,200,100,50,20,10,5]
 		{
-			for(int i=0;i<currency.length;i++)
+			for(int i=0;i<currency.length;i++)				//i=1
 			{
-				if(amountInINR>0)
+				if(amountInINR>0)						    // amountInINR= 9550,50,0
 				{
 				notes[i]=(int)amountInINR/currency[i];
 				amountInINR=(int)amountInINR%currency[i];

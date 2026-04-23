@@ -22,7 +22,6 @@ public class MyStack {
 		}
 		
 	}
-
 	
 	public void pop() {
 		if(isEmpty())

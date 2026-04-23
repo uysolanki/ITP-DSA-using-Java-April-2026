@@ -1,4 +1,4 @@
-package day10;
+
 
 public class MyStack {
 
@@ -44,4 +44,10 @@ public class MyStack {
 		else
 		return false;
 	}
+
+	public char[] getStack() {
+		return stack;
+	}
+	
+	
 }
