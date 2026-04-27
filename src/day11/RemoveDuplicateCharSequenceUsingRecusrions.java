@@ -3,7 +3,8 @@ package day11;
 public class RemoveDuplicateCharSequenceUsingRecusrions {
 
 	public static void main(String[] args) {
-		String str = "aaabbbaaca";
+		//String str = "aaabbbaaca";
+		String str = "abbbaca";
 		String result = remove(str);
 		System.out.println(result); 
 
