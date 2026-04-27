@@ -1,0 +1,46 @@
+package day12;
+
+public class MyQueue3 {
+	
+	int queue[]=new int[5];
+	int rear=-1;
+	int front=0;
+	
+	void insert(int data)
+	{
+			queue[++rear]=data;
+	}
+		
+	int remove()
+	{	
+		return queue[front++];		
+	}
+	
+	void display()
+	{
+			for(int i=front;i<=rear;i++)
+				System.out.println(queue[i]);
+	}
+	
+	public boolean isEmpty()
+	{
+		if(front>rear)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isFull()
+	{
+		if(rear==queue.length-1)
+			return true;
+		else
+			return false;
+	}
+	
+	public int peek()
+	{
+		return queue[front];
+	}
+
+}
