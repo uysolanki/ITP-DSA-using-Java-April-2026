@@ -7,7 +7,26 @@ public class LinearLinkedListDemo {
 	public static void main(String[] args) {
 		Node head=null;
 		head=createList(head);
+		System.out.println("Display List After Creation");
 		displayList(head);
+		head=reverseList(head);
+		System.out.println("Display List After Reverse");
+		displayList(head);
+	}
+
+	private static Node reverseList(Node head) {
+		Node left=null;
+		Node right=null;
+		Node current=head;
+		
+		while(current!=null)
+		{
+			right=current.getNext();
+			current.setNext(left);
+			left=current;
+			current=right;
+		}
+		return left;
 	}
 
 	private static void displayList(Node head) {
