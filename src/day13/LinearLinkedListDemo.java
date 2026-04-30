@@ -20,11 +20,53 @@ public class LinearLinkedListDemo {
 		addMid(head);
 		System.out.println("Display List After Adding Middle");
 		displayList(head);
+		
+		head=deleteFirst(head);
+		System.out.println("Display List After Deleting First");
+		displayList(head);
+		
+		deleteLast(head);
+		System.out.println("Display List After Deleting Last");
+		displayList(head);
+		
+		deleteMid(head);
+		System.out.println("Display List After Deleting Mid");
+		displayList(head);
 			
 //		
 //		head=reverseList(head);
 //		System.out.println("Display List After Reverse");
 //		displayList(head);
+	}
+
+	private static void deleteMid(Node head) {
+		Node temp=head;
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter Position to delete"); //position=3
+		int position=sc.nextInt();
+		
+		int i=1;
+		while(i<position-1)
+		{
+			temp=temp.getNext();
+		}
+		
+		Node temp1=temp.getNext();
+		temp.setNext(temp1.getNext());
+	}
+
+	private static void deleteLast(Node head) {
+		Node temp=head;
+		
+		while(temp.getNext().getNext()!=null)	//temp will move to second last
+			temp=temp.getNext();
+		temp.setNext(null);	
+	}
+
+	private static Node deleteFirst(Node head) {
+	head=head.getNext();
+	return head;
 	}
 
 	private static void addMid(Node head) {
@@ -126,3 +168,9 @@ public class LinearLinkedListDemo {
 	}
 
 }
+
+
+//write 3 functions
+//1. delete first
+//2. delete last
+//3. delete mid
