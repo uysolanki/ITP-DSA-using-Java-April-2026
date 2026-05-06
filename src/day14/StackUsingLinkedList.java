@@ -24,9 +24,9 @@ public class StackUsingLinkedList {
 			case 1:
 				System.out.println("Enter Data to Push");
 				int data=sc.nextInt();
-				stack.push(data);
-				
+				stack.push(data);			
 				break;
+				
 			case 2: 
 				if(stack.isEmpty())
 					System.out.println("Stack is Empty");
