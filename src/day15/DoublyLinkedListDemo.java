@@ -9,6 +9,19 @@ public class DoublyLinkedListDemo {
 		head=createDoublyLinkedList(head);
 		System.out.println("Display after creation ");
 		displayDoublyLinkedList(head);
+		
+		head=addFirst(head);
+		System.out.println("Display after after Adding First ");
+		displayDoublyLinkedList(head);
+	}
+
+	private static Node addFirst(Node head) {
+		Node nn=getNode();
+		nn.setNext(head);
+		head.setPrev(nn);
+		head=nn;
+		
+		return head;
 	}
 
 	private static void displayDoublyLinkedList(Node head) {
@@ -48,4 +61,13 @@ public class DoublyLinkedListDemo {
 		return head;
 	}
 
+	
+	public static Node getNode()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter data for Node ");
+		int data=sc.nextInt();
+		Node nn=new Node(data);
+		return nn;
+	}
 }
