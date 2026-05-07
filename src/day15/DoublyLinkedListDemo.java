@@ -2,6 +2,7 @@ package day15;
 
 import java.util.Scanner;
 
+
 public class DoublyLinkedListDemo {
 
 	public static void main(String[] args) {
@@ -10,9 +11,13 @@ public class DoublyLinkedListDemo {
 		System.out.println("Display after creation ");
 		displayDoublyLinkedList(head);
 		
-		head=addFirst(head);
-		System.out.println("Display after after Adding First ");
+		head=reverseDoublyLinkedList(head);
+		System.out.println("Display after reverse ");
 		displayDoublyLinkedList(head);
+		
+//		head=addFirst(head);
+//		System.out.println("Display after after Adding First ");
+//		displayDoublyLinkedList(head);
 	}
 
 	private static Node addFirst(Node head) {
@@ -69,5 +74,18 @@ public class DoublyLinkedListDemo {
 		int data=sc.nextInt();
 		Node nn=new Node(data);
 		return nn;
+	}
+	
+	private static Node reverseDoublyLinkedList(Node head) {
+		Node current=head;
+		Node temp=null;
+		while(current!=null)
+		{
+			temp=current.getPrev();			//temp = null
+			current.setPrev(current.getNext());
+			current.setNext(temp);
+			current=current.getPrev();
+		}
+		return temp.getPrev();
 	}
 }
