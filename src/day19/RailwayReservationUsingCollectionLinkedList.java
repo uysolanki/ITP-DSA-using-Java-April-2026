@@ -1,5 +1,6 @@
 package day19;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -63,14 +64,23 @@ public static void main(String[] args) {
 }
 
 private static void cancelReservation(LinkedList<Passenger> reservationList, int sno) {
-	for(Passenger passenger:reservationList)
+//	for(Passenger passenger:reservationList)
+//	{
+//		if(passenger.getSeatNo()==sno)
+//		{
+//			reservationList.remove(passenger);
+//		}
+//	}
+	
+	Iterator<Passenger> itr = reservationList.iterator();
+	while(itr.hasNext())
 	{
+		Passenger passenger=itr.next();
 		if(passenger.getSeatNo()==sno)
 		{
-			reservationList.remove(passenger);
+			itr.remove();
 		}
 	}
-	
 }
 
 private static int viewReservationByPassengerName(LinkedList<Passenger> reservationList, String pasName) {
