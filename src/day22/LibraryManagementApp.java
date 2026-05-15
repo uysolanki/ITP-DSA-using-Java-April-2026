@@ -1,18 +1,25 @@
-package day21;
+package day22;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class LibraryManagementApp {
-
+	 private static Student s1=new Student(1,"Alice");
+	 private static Student s2=new Student(2,"Ben");
+	 private static Student s3=new Student(3,"Chris");
+    
+    private static List<Student> studentList=new ArrayList(Arrays.asList(s1,s2,s3));
+    
 	public static void main(String[] args) {
 		System.out.println(LocalDate.now());
         List<Book> library = new LinkedList<>();
-
+        
         Scanner sc = new Scanner(System.in);
 
         int choice;
@@ -26,6 +33,7 @@ public class LibraryManagementApp {
             System.out.println("3. Return Book");
             System.out.println("4. View Books");
             System.out.println("5. View Available Books");
+            System.out.println("6. View Books Borrowed By Student Name");
             System.out.println("0. Exit");
 
             System.out.println("Enter choice");
@@ -52,6 +60,10 @@ public class LibraryManagementApp {
             case 5:
                 viewAvailableBooks(library);
                 break;
+                
+            case 6:
+                booksBorrowedByStudent(library);
+                break;
 
             case 0:
                 System.out.println("Thank You");
@@ -65,7 +77,21 @@ public class LibraryManagementApp {
 
     }
 
-    private static void viewAvailableBooks(List<Book> library) {
+    private static void booksBorrowedByStudent(List<Book> library) {
+    	 Scanner sc = new Scanner(System.in);
+    	 System.out.println("Enter Student Name");
+         String sname = sc.next();
+         for(Student student:studentList)
+         {
+        	 for(BookCopies copy: student.getBorrowedList())
+        	 {
+        		 System.out.println(copy);
+        	 }
+         }
+         System.out.println("----------------------");
+	}
+
+	private static void viewAvailableBooks(List<Book> library) {
     	System.out.println("Available Books");
     	System.out.println("----------------");
     	for(Book book:library)
@@ -129,6 +155,14 @@ public class LibraryManagementApp {
                     {
                         System.out.println("Enter Student Name");
                         String sname = sc.next();
+                        
+                        for(Student stud:studentList)
+                        {
+                        	if(stud.getStudentName().equals(sname))
+                        	{
+                        		stud.getBorrowedList().add(copy);
+                        	}
+                        }
 
                         copy.setAvailable(false);
 

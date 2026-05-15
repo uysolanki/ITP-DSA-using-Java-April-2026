@@ -1,11 +1,12 @@
-package day21;
+package day22;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
 	 private int rollNo;
 	    private String studentName;
-	    private List<BookCopies> borrowedList;
+	    private List<BookCopies> borrowedList=new ArrayList();
 	    public Student() {}
 
 	    public Student(int rollNo, String studentName) {
