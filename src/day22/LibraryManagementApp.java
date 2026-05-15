@@ -160,6 +160,9 @@ public class LibraryManagementApp {
                         {
                         	if(stud.getStudentName().equals(sname))
                         	{
+                        		if(stud.getBorrowedList().size()>=2)
+                        			System.out.println("Cannot borrow more books");
+                        		else
                         		stud.getBorrowedList().add(copy);
                         	}
                         }
