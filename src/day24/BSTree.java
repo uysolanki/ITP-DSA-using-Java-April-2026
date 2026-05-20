@@ -1,4 +1,4 @@
-package day23;
+package day24;
 
 import java.util.Scanner;
 
@@ -17,32 +17,6 @@ public static void main(String[] args) {
 	System.out.print("Post Order : ");
 	postOrder(root);
 	System.out.println();
-	
-	Scanner sc=new Scanner(System.in);
-	System.out.println("Enter Node 1 to find ");	//125
-	int n1=sc.nextInt();
-	System.out.println("Enter Node 2 to find ");	//125
-	int n2=sc.nextInt();
-	Node ans=lowestCommonAncestor(root,n1,n2);
-	System.out.println(String.format("Lowest COmmon Ancestor of %d & %d is %d",n1,n2,ans.getData()));
-}
-
-private static Node lowestCommonAncestor(Node root, int n1, int n2) {
-	if(root==null)
-		return null;
-	
-	if(n1> root.getData() && n2>root.getData())
-	{
-		return lowestCommonAncestor(root.getRight(), n1, n2);
-	}
-	
-	if(n1< root.getData() && n2<root.getData())
-	{
-		return lowestCommonAncestor(root.getLeft(), n1, n2);
-	}
-	
-	return root;
-	
 }
 
 private static void preOrder(Node root) {
@@ -78,8 +52,8 @@ private static Node createBST(Node root) {
 	int choice=0;
 	do
 	{
-		System.out.println("Enter data to insert");	//125
-		int data=sc.nextInt();
+		System.out.println("Enter name to insert");	//125
+		String data=sc.next();
 		
 		Node nn=new Node(data);
 		if(root==null)
@@ -101,7 +75,7 @@ private static Node createBST(Node root) {
 
 private static void insertNode(Node root, Node nn) 	//root			nn
 {													//4000			5000
-	if(nn.getData() >= root.getData())				//160  >= 175
+	if(nn.getData().compareTo(root.getData())>=1)				//160  >= 175
 	{
 		if(root.getRight()==null)
 		{

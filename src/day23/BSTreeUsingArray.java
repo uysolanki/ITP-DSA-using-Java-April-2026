@@ -2,10 +2,11 @@ package day23;
 
 import java.util.Scanner;
 
-public class BSTree {
+public class BSTreeUsingArray {
 public static void main(String[] args) {
 	Node root=null;
-	root=createBST(root);
+	int arr[]= {100,50,150,25,75,125,175,135};
+	root=createBST(root,arr);
 	System.out.print("Pre Order : ");
 	preOrder(root);
 	System.out.println();
@@ -24,7 +25,7 @@ public static void main(String[] args) {
 	System.out.println("Enter Node 2 to find ");	//125
 	int n2=sc.nextInt();
 	Node ans=lowestCommonAncestor(root,n1,n2);
-	System.out.println(String.format("Lowest COmmon Ancestor of %d & %d is %d",n1,n2,ans.getData()));
+	System.out.println(String.format("Lowest Common Ancestor of %d & %d is %d",n1,n2,ans.getData()));
 }
 
 private static Node lowestCommonAncestor(Node root, int n1, int n2) {
@@ -73,14 +74,10 @@ private static void postOrder(Node root) {
 		System.out.print(root.getData() + ",");
 	}
 }
-private static Node createBST(Node root) {
-	Scanner sc=new Scanner(System.in);
-	int choice=0;
-	do
-	{
-		System.out.println("Enter data to insert");	//125
-		int data=sc.nextInt();
-		
+private static Node createBST(Node root, int arr[]) {
+	
+	for(int data:arr)
+	{	
 		Node nn=new Node(data);
 		if(root==null)
 		{
@@ -89,13 +86,8 @@ private static Node createBST(Node root) {
 		else
 		{
 			insertNode(root,nn);
-		}
-		
-		
-		System.out.println("Do you want to continue? 1-yes 0-No");
-		choice=sc.nextInt();
-		
-	}while(choice==1);
+		}	
+	}
 	return root;
 }
 
