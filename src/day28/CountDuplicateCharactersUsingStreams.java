@@ -22,5 +22,5 @@ public class CountDuplicateCharactersUsingStreams {
 		.forEach(System.out::println);
 
 	}
-
 }
+
