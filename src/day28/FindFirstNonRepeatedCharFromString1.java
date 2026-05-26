@@ -1,12 +1,15 @@
-package day27;
+package day28;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class FindFirstRepeatedCharFromString5 {
+public class FindFirstNonRepeatedCharFromString1 {
 public static void main(String[] args) {
 	
 	//String str="Springbot is java framework";// which char is repeated first?  output 'o'
+	//n 0 4  == false
+	//i 1 3  == false
+	//t 2 2 == true
 	String str="Nitin";// which char is repeated first?  output 'o'
 	str=str.replaceAll("//s+", "").toLowerCase();
 	char ch=firstRepeatedChar(str);
@@ -15,23 +18,13 @@ public static void main(String[] args) {
 }
 
 private static char firstRepeatedChar(String str) {
-char arr[]=str.toCharArray();  //['s','p','r','i','n','g','b','o','o','t']
-	
-	Map<Character,Integer> hashmap=new HashMap();
-	for(char ch:arr)			//ch='s'
+
+	char arr[]=str.toCharArray();
+	for(char ch:arr)
 	{
-		hashmap.put(ch, hashmap.getOrDefault(ch, 0)+1);
+	if(str.indexOf(ch)==str.lastIndexOf(ch))
+	return ch;
 	}
-	
-		
-	for(char ch:arr)			//ch='s'
-	{
-		if(hashmap.get(ch)>1)
-		{
-			return ch;
-		}
-	}
-	
 	return '0';
 }
 }
@@ -42,3 +35,7 @@ char arr[]=str.toCharArray();  //['s','p','r','i','n','g','b','o','o','t']
 'p':1
 }
 */
+
+//longest common prefix   [flow flight flower]  answer "fl"
+
+//Prakash Pranav Prathamesh   "Pra" 

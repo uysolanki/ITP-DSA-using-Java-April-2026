@@ -1,14 +1,14 @@
-package day27;
+package day28;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class FindFirstRepeatedCharFromString5 {
+public class FindFirstNonRepeatedCharFromString {
 public static void main(String[] args) {
 	
-	//String str="Springbot is java framework";// which char is repeated first?  output 'o'
-	String str="Nitin";// which char is repeated first?  output 'o'
-	str=str.replaceAll("//s+", "").toLowerCase();
+	String str="Springbot is java framework";// which char is repeated first?  output 'o'
+	//String str="Nitin";// which char is repeated first?  output 'o'
+	str=str.replaceAll("\\s+", "").toLowerCase();
 	char ch=firstRepeatedChar(str);
 	System.out.println(ch=='0'?"no repeating char found":ch);
 
@@ -22,11 +22,11 @@ char arr[]=str.toCharArray();  //['s','p','r','i','n','g','b','o','o','t']
 	{
 		hashmap.put(ch, hashmap.getOrDefault(ch, 0)+1);
 	}
-	
+	System.out.println(hashmap);
 		
 	for(char ch:arr)			//ch='s'
 	{
-		if(hashmap.get(ch)>1)
+		if(hashmap.get(ch)==1)
 		{
 			return ch;
 		}
