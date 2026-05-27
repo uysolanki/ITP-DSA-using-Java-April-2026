@@ -7,9 +7,18 @@ import java.util.Map.Entry;
 public class StringEncodingContinousSequence {
 public static void main(String[] args) {
 	//            i
-	String str="aaabbbccaa";  //output : "a4b3c2"
+	//String str="aaabbbccaa";  //output : "a4b3c2"
+	String str="AaabBbccaa";
+	//String str="";
+	//String str=null;
+	//String str="         ";
 	
-	
+	if(str==null || str.length()==0)
+	{
+		System.out.println("Invalid Input");
+		return;
+	}
+	str=str.replaceAll("\\s", "").toLowerCase();
 	StringBuilder sb=new StringBuilder();									//count 1,2,3
 	int count=1;															
 	for(int i=0;i<str.length();i++)
