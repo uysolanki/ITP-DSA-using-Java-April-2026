@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 public class StringEncoding {
 public static void main(String[] args) {
 	
-	String str="aaaabbbcc";  //output : "a4b3c2"
+	String str="aaaabbbccaa";  //output : "a4b3c2"
 	
 	
 	Map<Character,Integer> hashmap=new LinkedHashMap();
@@ -17,7 +17,7 @@ public static void main(String[] args) {
 	
 	System.out.println(hashmap);
 	
-	StringBuffer sb=new StringBuffer();
+	StringBuilder sb=new StringBuilder();
 	for(Entry<Character,Integer> entry:hashmap.entrySet())
 	{
 		sb.append(entry.getKey()).append(entry.getValue());

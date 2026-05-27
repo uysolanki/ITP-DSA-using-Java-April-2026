@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 public class StringEncodingUsingStreamAPI {
 public static void main(String[] args) {
 	
-	String str="aaaabbbcc";  //output : "a4b3c2"
-	
+	//String str="aaaabbbcc";  //output : "a4b3c2"
+	String str="banana"; 
 	
 	Map<Character,Long> hashmap=new LinkedHashMap();
 	
