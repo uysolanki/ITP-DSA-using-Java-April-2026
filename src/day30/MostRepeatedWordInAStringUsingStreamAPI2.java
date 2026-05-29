@@ -11,9 +11,7 @@ public class MostRepeatedWordInAStringUsingStreamAPI2 {
 		String str = "one one one two two one three three four";
 
 		String arr[] = str.split(" "); // ["one", "one", "one", "two", "two", "one", "three", "three", "four"]
-
-		Map<String, Long> hashmap = new HashMap();
-
+		
 		Entry<String, Long> maxEntry = Arrays
 				.stream(arr)
 				.collect(Collectors.groupingBy(word -> word, Collectors.counting()))
