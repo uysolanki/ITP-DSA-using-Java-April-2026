@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 public class MostRepeatedCharInAWordUsingStreamAPI {
 	public static void main(String[] args) {
-		//String str = "mahendra";
-		String str = "my name is nitin";
+		String str = "mahendra";
+		//String str = "my name is nitin";
 		
 		str=str.replaceAll("\\s+", "").toLowerCase();
 
