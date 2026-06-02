@@ -9,9 +9,7 @@ public class GroupingByLengthUsingStreams {
 
 	public static void main(String[] args) {
 		String str = "one two three three four five six seven eight nine ten";
-		
-
-		
+	
 		String arr[]=str.split(" "); //["one","two","three","three","four","five","six","seven","eight","nine","ten"];
 		//grouping by
 		//key : logiic to be provided by developer
