@@ -88,7 +88,37 @@ public class EmployeeJSONReader {
 			.collect(Collectors.groupingBy(Employee::getDepartment,Collectors.counting()));
 			
 			System.out.println(deptWiseEmployeeCount);
-
+		//display empname whose sal is > than max salary of Sales Dept
+		//inner query - max salary of Sales Dept i.e 2100
+			
+			double maxSalaryOfSalesDept=employees.stream()
+					.filter(emp->"Sales".equalsIgnoreCase(emp.getDepartment()))
+					.mapToDouble(Employee::getSalary)
+					.max()
+					.orElse(0.0);
+			
+			System.out.println(maxSalaryOfSalesDept);
+			
+			//outer query -get emp names whose sal is > 2100
+			List<String> emps=employees.stream()
+			.filter(emp->emp.getSalary()>maxSalaryOfSalesDept)
+			.map(emp->emp.getName())
+			.toList();
+			
+			System.out.println(emps);
+			
+			final List<Employee> newEmployees=employees;
+			//combined solution
+			List<String> emps1=newEmployees.stream()
+					.filter(emp->emp.getSalary()>
+					newEmployees.stream()
+					.filter(emp1->"Sales".equalsIgnoreCase(emp1.getDepartment()))
+					.mapToDouble(Employee::getSalary)
+					.max()
+					.orElse(0.0))
+					.map(Employee::getName)
+					.toList();
+			System.out.println(emps1);
 	}
 
 }
