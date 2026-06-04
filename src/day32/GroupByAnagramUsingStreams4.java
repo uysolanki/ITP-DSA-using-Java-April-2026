@@ -35,8 +35,3 @@ private static String getString(String str) {
 }
 
 
-/*
- {
- "abc" : []
- }
- */

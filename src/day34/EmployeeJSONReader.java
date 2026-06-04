@@ -1,0 +1,94 @@
+package day34;
+
+import java.io.File;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class EmployeeJSONReader {
+
+	public static void main(String[] args) {
+		ObjectMapper mapper = new ObjectMapper();
+		List<Employee> employees=null;
+        try {
+            employees = mapper.readValue(
+            	//new File("D:\\EclipseJavaprogs2\\Test\\json\\employee.json"),	   //absolute path
+                new File("json/employee.json"),									  //relative path
+                new TypeReference<List<Employee>>() {}
+            );
+            
+            System.out.println(employees);
+       
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		
+        //display the count of Employees
+		long countOfEmployees=employees.stream().count();
+		System.out.println("Count of Employees "+countOfEmployees);
+		
+		 //display the department names
+		List<String> deptNames=employees.stream()
+				.map(emp->emp.getDepartment())
+				.distinct()
+				.toList();
+		
+		System.out.println(deptNames);
+		
+		
+		 //display the employee object with max salary solution 1:using Optional
+		Optional<Employee> highestEarningEmployee=employees.stream()
+				.max(Comparator.comparing(Employee::getSalary));
+				
+		
+		System.out.println(highestEarningEmployee.get());
+		
+		//display the employee object with max salary solution 2:using or else
+				Employee highestEarningEmployee1=employees.stream()
+						.max(Comparator.comparing(Employee::getSalary))
+						.orElse(null);
+						
+				
+				System.out.println(highestEarningEmployee1);
+				
+		//display the employee object with max salary solution 3:direct display
+				employees.stream()
+						.max(Comparator.comparing(Employee::getSalary))
+						.ifPresent(System.out::println);
+				
+		//display the employee object with min salary 
+				employees.stream()
+						.min(Comparator.comparing(Employee::getSalary))
+						.ifPresent(System.out::println);
+				
+		//display the employee object whose has joined the earliest
+				employees.stream()
+						.min(Comparator.comparing(Employee::getYearOfJoining))
+						.ifPresent(System.out::println);
+		
+		//display the employee object whose has joined the latest
+				employees.stream()
+						.max(Comparator.comparing(Employee::getYearOfJoining))
+						.ifPresent(System.out::println);
+				
+		//display how much the company is spending in payrol of salary
+			double totalSalaryOfAllEmps=	employees.stream()						   //non primitive stream
+						.mapToDouble(Employee::getSalary)  //primitive steam
+						.sum();
+			System.out.println(totalSalaryOfAllEmps);
+			
+		//deptwise count of employee
+		//{"IT" : 4, "Sales" : 4 , "Marketing" : 4}
+			Map<String,Long> deptWiseEmployeeCount=employees.stream()
+			.collect(Collectors.groupingBy(Employee::getDepartment,Collectors.counting()));
+			
+			System.out.println(deptWiseEmployeeCount);
+
+	}
+
+}

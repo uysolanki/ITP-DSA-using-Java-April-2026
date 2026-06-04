@@ -1,0 +1,21 @@
+
+  {
+    "id": 6,
+    "name": "June",
+    "age": 43,
+    "gender": "male",
+    "department": "IT",
+    "yearOfJoining": 2016,
+    "salary": 900.0,
+    "address": {
+      "houseNumber": 15,
+      "street": "BG Road",
+      "city": "Pune",
+      "pinCode": 411001,
+      "houseType": "Flat"
+    },
+    "projects": [
+      { "projectId": 1, "projectName": "Alpha", "projectBudget": 100.0, "projectStatus": "c" },
+      { "projectId": 2, "projectName": "Beta", "projectBudget": 200.0, "projectStatus": "c" }
+    ]
+  }
