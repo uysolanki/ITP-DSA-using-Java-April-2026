@@ -119,6 +119,38 @@ public class EmployeeJSONReader {
 					.map(Employee::getName)
 					.toList();
 			System.out.println(emps1);
+			
+			//Top 3 Highest Paid Employees
+			
+			List<String> top3Emps=employees.stream()
+			.sorted(Comparator.comparing(Employee::getSalary).reversed())
+			.limit(3)
+			.map(Employee::getName)
+			.toList();
+			
+			System.out.println(top3Emps);
+			
+			//2nd Highest Paid Employees
+			
+			String secondHighestPaidEmployeeName= employees.stream()
+			.sorted(Comparator.comparing(Employee::getSalary).reversed())
+			.skip(1)
+			.map(Employee::getName)
+			.findFirst()
+			.orElse(null);
+			
+			System.out.println(secondHighestPaidEmployeeName);
+			
+			//give list of all projects
+			//flatMap ->2D convert to 1D
+			
+			List<String> projectNames=employees.stream()
+			.flatMap(emp->emp.getProjects().stream())
+			.map(project->project.getProjectName())
+			.distinct()
+			.toList();
+			
+			System.out.println(projectNames);
 	}
 
 }
