@@ -1,6 +1,8 @@
 package day34;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -151,6 +153,74 @@ public class EmployeeJSONReader {
 			.toList();
 			
 			System.out.println(projectNames);
-	}
+			
+			employees.stream()
+			.flatMap(emp->emp.getProjects().stream())
+			.map(project->project.getProjectName())
+			.distinct()
+			.toList()
+			.forEach(System.out::println);
+			
+			
+			List<String> one=new ArrayList(Arrays.asList("Apple","Mango"));
+			List<String> two=new ArrayList(Arrays.asList("Merc","BMW"));
+			
+			List<List<String>> three=new ArrayList<List<String>>(Arrays.asList(one,two));
+			System.out.println(three);
+			
+			List<String> four=three.stream()
+			.flatMap(list->list.stream())
+			.toList();
+			
+			System.out.println(four);
+			
+			List<String> five=three.stream()
+					.flatMap(List::stream)
+					.toList();
+					
+					System.out.println(five);
+			
+		  // display various house types
+					employees.stream()
+					.map(emp->emp.getAddress().getHouseType())
+					.distinct()
+					.toList()
+					.forEach(System.out::print);
 
+		//display names of emlpoyees staying flat
+					employees.stream()
+					.filter(emp->"flat".equalsIgnoreCase(emp.getAddress().getHouseType()))
+					.map(emp->emp.getName())
+					.toList()
+					.forEach(System.out::print);
+					
+					//display number of emlpoyees staying in flat
+					long count=employees.stream()
+					.filter(emp->"flat".equalsIgnoreCase(emp.getAddress().getHouseType()))
+					.count();
+					System.out.println(count);
+					
+					
+	}
+	
+	
 }
+
+/*
+[
+{
+[{},{}]
+},
+
+{
+[{},{}]
+}
+
+{
+[{},{}]
+}
+
+
+[{},{},{},{}]  List<Employee>
+[]			   List<String>
+*/
