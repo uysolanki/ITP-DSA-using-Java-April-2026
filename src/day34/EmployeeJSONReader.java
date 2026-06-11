@@ -201,6 +201,27 @@ public class EmployeeJSONReader {
 					System.out.println(count);
 					
 					
+					List<List<String>> users2D=new ArrayList();
+					users2D.add(Arrays.asList("Alice","Ben"));
+					users2D.add(Arrays.asList("Chris","David"));
+					
+					System.out.println(users2D);
+					
+					List<String> users1D=users2D.stream()
+					.flatMap(list->list.stream())
+					.toList();
+					System.out.println(users1D);
+					
+					List<String> allDistinctProjectNames=employees.stream()
+					.flatMap(emp->emp.getProjects().stream())
+					.map(proj->proj.getProjectName())
+					.distinct()
+					.sorted()
+					.toList();
+					
+					System.out.println(allDistinctProjectNames);
+					
+					
 	}
 	
 	
