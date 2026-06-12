@@ -118,9 +118,25 @@ public class ProductJSONReader {
     	.map(Product::getTitle)
     	.toList()
     	.forEach(System.out::println);
+    	System.out.println("**************");
+    	
+    	Comparator<Product> rateComp=(o1, o2)->{
+    		if(o1.getRating().getRate()>o2.getRating().getRate())
+    			return -1;
+    		else if(o1.getRating().getRate()<o2.getRating().getRate())
+    			return 1;
+    		else return 0;
+    	};
     	
     	
     	
+    	//top3 highest rated products
+    	products.stream()
+    	.sorted(rateComp)
+    	.limit(3)
+    	.map(Product::getTitle)
+    	.toList()
+    	.forEach(System.out::println);
 	}
 	
 	
