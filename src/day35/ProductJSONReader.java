@@ -82,6 +82,45 @@ public class ProductJSONReader {
     	.orElse(0))
     	.forEach(product->System.out.print(product.getTitle()));
     	
+    	System.out.println();
+    	//group products based on category
+    	
+    	Map<String, List<Product>> groupByCategory=
+    			products.stream()
+    			.collect(Collectors.groupingBy(Product::getCategory));
+    	
+    	System.out.println(groupByCategory);
+    	
+    	//Get the distinct categories
+    	List<String> distinctCategory=
+		products.stream()
+		.collect(Collectors.groupingBy(Product::getCategory))
+		.entrySet()
+		.stream()
+		.map(entry->entry.getKey())
+		.distinct()
+		.toList();
+    	
+    	System.out.println(distinctCategory);
+    	
+    	List<String> distinctCategory1=
+    			products.stream()
+    			.map(Product::getCategory)
+    			.distinct()
+    			.toList();
+    	
+    	System.out.println(distinctCategory1);
+    	
+    	//top3 highest rated products
+    	products.stream()
+    	.sorted(new RateComparator())
+    	.limit(3)
+    	.map(Product::getTitle)
+    	.toList()
+    	.forEach(System.out::println);
+    	
+    	
+    	
 	}
 	
 	
