@@ -137,6 +137,50 @@ public class ProductJSONReader {
     	.map(Product::getTitle)
     	.toList()
     	.forEach(System.out::println);
+    	
+    	//average price of all electronics products
+    	double averagePriceOfElectronics=products.stream()
+    	.filter(prod->"electronics".equalsIgnoreCase(prod.getCategory()))
+    	.mapToDouble(Product::getPrice)
+    	.average()
+    	.orElse(0.0);
+ 
+    	System.out.println(averagePriceOfElectronics);
+    	
+    	
+    	
+    	//average price per category
+    	Map<String,Double> averagePricePerCategory= products.stream()
+    			.collect(Collectors.groupingBy(Product::getCategory,Collectors.averagingDouble(Product::getPrice)));
+    					
+    	System.out.println(averagePricePerCategory);
+    	
+    	//display product titles group by category
+    	Map<String,List<String>> productTitlesGroupedByCategory=products.stream()
+    			.collect(Collectors.groupingBy(Product::getCategory,Collectors.mapping(Product::getTitle,Collectors.toList())));
+    	
+    	System.out.println(productTitlesGroupedByCategory);
+    	
+    	//display product titles(1st 10 chars) group by category
+    	Map<String,List<String>> productTitlesGroupedByCategory1=products.stream()
+    			.collect(Collectors.groupingBy(Product::getCategory,Collectors.mapping(prod->prod.getTitle().substring(0,9),Collectors.toList())));
+    	
+    	System.out.println(productTitlesGroupedByCategory1);
+    					
+   
+    	//display category which has highest average price
+    	String categoryWithHighestAveragePrice= products.stream()
+    			.collect(Collectors.groupingBy(Product::getCategory,Collectors.averagingDouble(Product::getPrice)))
+    			.entrySet()
+    			.stream()
+    			.max(Map.Entry.comparingByValue())
+    			.map(Map.Entry::getKey)
+    			.orElse(null);
+    					
+    	System.out.println(categoryWithHighestAveragePrice);
+    	
+    	
+    	
 	}
 	
 	
