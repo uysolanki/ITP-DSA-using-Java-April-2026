@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class DownstreamDemo {
 	public static void main(String[] args) {
 
-		List<String> months = new ArrayList(Arrays.asList("January", "February", "March", "April", "May", "June",
+		List<String> months = new ArrayList<String>(Arrays.asList("January", "February", "March", "April", "May", "June",
 				"July", "August", "September", "October", "November", "December"));
 
 		Map<Integer, List<String>> hashmap = months.stream().collect(Collectors.groupingBy(String::length));
@@ -31,6 +31,28 @@ public class DownstreamDemo {
 				Collectors.groupingBy(String::length, Collectors.mapping(String::toUpperCase, Collectors.joining("-"))));
 
 		System.out.println(hashmap3);
+		
+		
+		
+		List<String> list1 = new ArrayList<String>(Arrays.asList("January", "February", "March"));
+		list1.add("April");
+		
+		System.out.println(list1);
+		
+		try
+		{
+		List<String> list2 = Arrays.asList("January", "February", "March");
+		list2.add("April");
+		
+		System.out.println(list2);
+		}
+		catch(UnsupportedOperationException ex1)
+		{
+			System.out.println(ex1.getMessage());
+		}
+		
+		
+		
 	}
 }
 
