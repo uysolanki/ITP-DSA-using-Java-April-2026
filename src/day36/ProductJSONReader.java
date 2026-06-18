@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import day35.RateComparator;
+
 public class ProductJSONReader {
 
 	public static void main(String[] args) {
@@ -110,16 +112,6 @@ public class ProductJSONReader {
     			.toList();
     	
     	System.out.println(distinctCategory1);
-    	
-    	//top3 highest rated products
-    	products.stream()
-    	.sorted(new RateComparator())
-    	.limit(3)
-    	.map(Product::getTitle)
-    	.toList()
-    	.forEach(System.out::println);
-    	System.out.println("**************");
-    	
     	Comparator<Product> rateComp=(o1, o2)->{
     		if(o1.getRating().getRate()>o2.getRating().getRate())
     			return -1;
@@ -127,6 +119,18 @@ public class ProductJSONReader {
     			return 1;
     		else return 0;
     	};
+    	
+    	
+    	//top3 highest rated products
+    	products.stream()
+    	.sorted(rateComp)
+    	.limit(3)
+    	.map(Product::getTitle)
+    	.toList()
+    	.forEach(System.out::println);
+    	System.out.println("**************");
+    	
+    
     	
     	
     	

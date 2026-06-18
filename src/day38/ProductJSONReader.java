@@ -1,4 +1,4 @@
-package day37;
+package day38;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -91,11 +91,41 @@ public class ProductJSONReader {
         
         
         //display the product titles where price > avg price of electronics
+        System.out.println("Average price of electronics "+
+        		products.stream()
+        	       .filter(prod1->"electronics".equalsIgnoreCase(prod1.getCategory()))
+        	       .mapToDouble(Product::getPrice)
+        	       .average()
+        	       .orElse(0.0));
+        final List<Product> products1=products;
+       
+       List<String> prodTitles= products.stream()
+       .filter(prod->prod.getPrice()>
+       products1.stream()
+       .filter(prod1->"electronics".equalsIgnoreCase(prod1.getCategory()))
+       .mapToDouble(Product::getPrice)
+       .average()
+       .orElse(0.0))
+       .map(Product::getTitle)
+       .toList();
         
-       System.out.println("Hi");
+       
+       System.out.println(prodTitles);
        
        
-        
+       String prodTitles1= products.stream()
+    	       .filter(prod->prod.getPrice()>
+    	       products1.stream()
+    	       .filter(prod1->"electronics".equalsIgnoreCase(prod1.getCategory()))
+    	       .mapToDouble(Product::getPrice)
+    	       .average()
+    	       .orElse(0.0))
+    	       .map(Product::getTitle)
+    	       .map(str->str.substring(0,10))
+    	       .collect(Collectors.joining("-"));
+       
+       System.out.println(prodTitles1);
+    	       
         
 	}
 	
