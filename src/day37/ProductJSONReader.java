@@ -92,12 +92,46 @@ public class ProductJSONReader {
         
         //display the product titles where price > avg price of electronics
         
-       System.out.println("Hi");
-       
-       
+        //Display the names of products whose price is shared by at least one other product;
         
         
+       Map<Double,List<String>> map= products.stream()
+        .collect(Collectors.groupingBy(Product::getPrice,Collectors.mapping(Product::getTitle, Collectors.toList())));
+       
+       System.out.println(map);
+       
+       Map<Double,List<String>> map1= products.stream()
+    	        .collect(Collectors.groupingBy(Product::getPrice, Collectors.mapping(Product::getTitle, Collectors.toList())))
+    	        .entrySet()
+    	        .stream()
+    	        .filter(entry->entry.getValue().size()>1)
+    	        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    	       
+       System.out.println(map1);
+       
+       List<String> map2= products.stream()
+   	        .collect(Collectors.groupingBy(Product::getPrice, Collectors.mapping(Product::getTitle, Collectors.toList())))
+   	        .entrySet()
+   	        .stream()
+   	        .filter(entry->entry.getValue().size()>1)
+   	        .flatMap(entry->entry.getValue().stream())
+   	        .toList();
+   	       
+      System.out.println(map2);
+    	         
 	}
-	
-	
 }
+
+//eno  ename salary
+//1    Alice 800
+//2    Ben   800
+//3    Chris 1000
+//4    David 1000
+//5    Frank 1100
+
+//Display the names of employees whose salary is shared by at least one other employee
+//ename
+//Alice
+//Ben
+//Chris
+//David

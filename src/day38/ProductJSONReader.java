@@ -90,14 +90,17 @@ public class ProductJSONReader {
         //group by category;
         
         
-        //display the product titles where price > avg price of electronics
+        //display the avg price of electronics
         System.out.println("Average price of electronics "+
         		products.stream()
         	       .filter(prod1->"electronics".equalsIgnoreCase(prod1.getCategory()))
         	       .mapToDouble(Product::getPrice)
         	       .average()
         	       .orElse(0.0));
-        final List<Product> products1=products;
+       
+        
+        //display the product titles where price > avg price of electronics 
+       final List<Product> products1=products;
        
        List<String> prodTitles= products.stream()
        .filter(prod->prod.getPrice()>
@@ -111,7 +114,10 @@ public class ProductJSONReader {
         
        
        System.out.println(prodTitles);
-       
+       /*
+        select title from product
+        where price > (select avg(price) from product where category like 'electronics');
+        */
        
        String prodTitles1= products.stream()
     	       .filter(prod->prod.getPrice()>
